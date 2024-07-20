@@ -1,3 +1,4 @@
+const MinHeap = require('collections/min-heap');
 function mincost(arr)
 { 
 //write your code here
