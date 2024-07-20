@@ -1,23 +1,22 @@
-const MinHeap = require('collections/min-heap');
-function mincost(arr)
-{ 
-//write your code here
-	if (arr.length <= 1) {
-        return 0;
-    }
-	const heap = new MinHeap(arr);
+function mincost(arr) {
+    const heap = [...arr];
+    let cost = 0;
+    heap.sort((a, b) => a - b);
 
-    let totalCost = 0;
-	while (heap.length > 1) {
-		const first = heap.pop();
-        const second = heap.pop();
-		const cost = first + second;
-        totalCost += cost;
-		heap.push(cost);
+    while (heap.length > 1) {
+
+        const first = heap.shift();
+        const second = heap.shift();
+
+        const currentCost = first + second;
+        cost += currentCost;
+
+        heap.push(currentCost);
+
+        heap.sort((a, b) => a - b);
     }
-	return totalCost;
-// return the min cost
-  
+    
+    return cost;
 }
 
-module.exports=mincost;
+module.exports = mincost;
